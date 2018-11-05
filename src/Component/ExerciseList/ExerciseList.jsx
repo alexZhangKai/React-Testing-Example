@@ -3,8 +3,8 @@ import { ListGroup, ListGroupItem } from "react-bootstrap";
 
 import "./ExerciseList.css";
 
-const ExerciseList = ({ExerciseData}) => {
-    if(!ExerciseData || ExerciseData.length === 0) {
+const ExerciseList = ({exerciseData}) => {
+    if(!exerciseData || exerciseData.length === 0) {
 
         return (
             <div>
@@ -16,7 +16,7 @@ const ExerciseList = ({ExerciseData}) => {
     return (
         <div className="list-container">
             <ListGroup>
-                {ExerciseData.map((record, key) => (
+                {exerciseData.map((record, key) => (
                     <ListGroupItem key={key}>{record}</ListGroupItem>
                 ))}
             </ListGroup>
