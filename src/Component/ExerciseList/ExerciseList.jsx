@@ -16,8 +16,8 @@ const ExerciseList = ({ExerciseData}) => {
     return (
         <div className="list-container">
             <ListGroup>
-                {ExerciseData.map(record => (
-                    <ListGroupItem>{record}</ListGroupItem>
+                {ExerciseData.map((record, key) => (
+                    <ListGroupItem key={key}>{record}</ListGroupItem>
                 ))}
             </ListGroup>
             <h3>Great Work!</h3>
