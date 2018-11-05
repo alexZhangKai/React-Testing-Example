@@ -1,28 +1,63 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import ExerciseList from "./Component/ExerciseList";
+import TypeSelector from "./Component/TypeSelector";
+
 import './App.css';
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
-  }
+
+    state = {
+        exerciseData: [
+            "Swimming 06/11/2018, 00:06:57",
+            "Arm Day 05/11/2018, 00:06:57",
+            "Chest Day 04/11/2018, 00:06:57",
+        ],
+        typeData: [
+            "Swimming",
+            "Arm Day",
+            "Chest Day"
+        ]
+    }
+
+    handleAddNewType(newType) {
+        this.setState(oldState => ({
+            typeData: [...oldState.typeData, newType]
+        }))
+    }
+
+    handleRemoveType(type) {
+        this.setState(oldState => {
+            let index = oldState.typeData.indexOf(type);
+            oldState.typeData.splice(index, 1);
+            return {
+                typeData: oldState.typeData
+            }
+        })
+    }
+
+    handleAddRecord(newExercise) {
+        this.setState(oldState => ({
+            exerciseData: [...oldState.exerciseData, newExercise]
+        }))
+    }
+
+    render() {
+        return (
+            <div className="App">
+                <header className="App-header">
+                    {"Exercise Tracker"}
+                </header>
+                <TypeSelector 
+                    typeData={this.state.typeData} 
+                    handleAddNewType={this.handleAddNewType.bind(this)}
+                    handleRemoveType={this.handleRemoveType.bind(this)}
+                    handleAddRecord={this.handleAddRecord.bind(this)}
+                />
+                <br></br>
+                <ExerciseList exerciseData={this.state.exerciseData} />
+            </div>
+        );
+    }
 }
 
 export default App;
